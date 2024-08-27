@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/20 19:19:12 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/21 16:41:55 by agoldber         ###   ########.fr       */
+/*   Created: 2024/08/20 15:54:37 by agoldber          #+#    #+#             */
+/*   Updated: 2024/08/27 17:34:31 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_exit(char *str, int i)
+int	main(int ac, char **av)
 {
-	ft_putstr_fd(str, 1);
-	exit(i);
+	t_stack_node	*a;	
+	t_stack_node	*b;
+
+	a = NULL;
+	b = NULL;
+	if (ac == 1 || (ac == 2 && !av[1][0]))
+		ft_exit("Wrong argument!\n", -1);
+	check_av(ac, av);
+	//list_init(*a, *b, av);
+	return (0);
 }

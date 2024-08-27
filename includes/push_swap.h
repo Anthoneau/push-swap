@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:21:32 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/21 16:31:11 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:34:22 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 # define PUSH_SWAP_H
 # include "libft.h"
 
-typedef struct s_list_node {
+typedef struct s_stack_node {
 	int	value;
 	int	pos;
-	s_list_node *prev;
-	s_list_node *next;
-}	t_node;
+	struct s_stack_node *prev;
+	struct s_stack_node *next;
+}	t_stack_node;
 
+void	check_av(int ac, char **av);
 void	ft_exit(char *str, int n);
 
 #endif
