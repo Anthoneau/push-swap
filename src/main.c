@@ -6,22 +6,24 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:54:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/31 01:32:51 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:41:36 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdio.h>
 
-static void	print_stack(t_stack_node *a)
-{
-	printf("contenu de la pile :\n\n");
-	while(a)
-	{
-		printf("Noeud : %p\nValeur : %d\nAdresse du suivant : %p\nAdresse du précédent : %p\n\n", (void *)a, a->value, (void *)a->next, (void *)a->prev);
-		a = a->next;
-	}
-}
+// static void	print_stack(t_stack_node *a)
+// {
+// 	printf("-------------------------------------------------------\n");
+// 	printf("contenu de la pile :\n\n");
+// 	while(a)
+// 	{
+// 		printf("|Noeud : %p\n|Valeur : %d\n|Adresse du suivant : %p\n|Adresse du précédent : %p\n\n", (void *)a, a->value, (void *)a->next, (void *)a->prev);
+// 		a = a->next;
+// 	}
+// 	printf("-------------------------------------------------------\n");
+// }
 
 int	main(int ac, char **av)
 {
@@ -34,7 +36,14 @@ int	main(int ac, char **av)
 		ft_exit("Wrong argument!\n", -1);
 	check_av(ac, av);
 	stack_init(&a, av);
-	print_stack(a);
+	print_stacks(a, b);
+	pb(&b, &a);
+	pb(&b, &a);
+	sb(&b);
+	pa(&a, &b);
 	sa(&a);
+	pa(&a, &b);
+	sa(&a);
+	print_stacks(a, b);
 	return (0);
 }

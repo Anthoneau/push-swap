@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:39:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/31 17:37:55 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/02 17:26:17 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,50 @@ static int	check(t_stack_node *node)
 		i++;
 	}
 	if (i >= 2)
-		return (i);
+		return (1);
 	else
 		return (0);
 }
 
-void	swap(t_stack_node **a)
+static void    swap(t_stack_node **a)
 {
-	t_stack_node	*first;
-	t_stack_node	*second;
-	t_stack_node	*current;
-	int				i;
+    t_stack_node    *first;
+    t_stack_node    *second;
+    t_stack_node    *current;
 
-	current = *a;
-	first = NULL;
-	second = NULL;
-	if ((i = check(*a)) == 2)
-	{
-		first = current;
-		current = current->next;
-		first->prev = first->next;
-		first->next = NULL;
-		current->next = current->prev;
-		current->prev = NULL;
-		printf("Noeud Current : %p\nValue : %d\nAdresse next : %p\nAdresse prev : %p\n\n", (void *)current, current->value, (void *)current->next, (void *)first->prev);
-		printf("Noeud First : %p\nValue : %d\nAdresse next : %p\nAdresse prev : %p\n\n", (void *)first, first->value, (void *)first->next, (void *)first->prev);
-	}
+    current = *a;
+    first = NULL;
+    second = NULL;
+    if (check(*a))
+    {
+        first = current;
+        second = current->next;
+        first->prev = first->next;
+        if (second->next)
+        {
+            first->next = second->next;
+            first->next->prev = first;
+        }
+        else
+            first->next = NULL;
+        second->next = first;
+        second->prev = NULL;
+    }
+	*a = second;
 }
 
+void	sa(t_stack_node **a)
+{
+	swap(a);
+}
+
+void	sb(t_stack_node **b)
+{
+	swap(b);
+}
+
+void	ss(t_stack_node **a, t_stack_node **b)
+{
+	swap(a);
+	swap(b);
+}

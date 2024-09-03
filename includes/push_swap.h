@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:21:32 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/31 00:33:46 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:01:48 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_verif_num {
 	int err;
 }	t_verif;
 
+void	print_stacks(t_stack_node *stack_a, t_stack_node *stack_b);
 void	ft_exit(char *str, int n);
 void	ft_freexit(void *pointer, char *str, int i);
 void	ft_free_stack(t_stack_node **stack);
@@ -34,5 +35,9 @@ t_verif	ft_atol(char *str);
 
 //Movements
 void	sa(t_stack_node **a);
+void	sb(t_stack_node **b);
+void	ss(t_stack_node **a, t_stack_node **b);
+void	pa(t_stack_node **a, t_stack_node **b);
+void	pb(t_stack_node **b, t_stack_node **a);
 
 #endif
