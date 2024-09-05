@@ -6,12 +6,11 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:39:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/02 17:26:17 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/04 15:17:49 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 static int	check(t_stack_node *node)
 {

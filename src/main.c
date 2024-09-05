@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:54:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/02 20:41:36 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:43:24 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,16 @@
 // 	printf("-------------------------------------------------------\n");
 // }
 
+static void	print_tab(char **av)
+{
+	int i = 0;
+	while (av[i])
+	{
+		printf("av[%d] : %s\n", i, av[i]);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_stack_node	*a;	
@@ -33,17 +43,13 @@ int	main(int ac, char **av)
 	a = NULL;
 	b = NULL;
 	if (ac == 1 || (ac == 2 && !av[1][0]))
-		ft_exit("Wrong argument!\n", -1);
+		ft_exit("", -1);
 	check_av(ac, av);
-	stack_init(&a, av);
-	print_stacks(a, b);
-	pb(&b, &a);
-	pb(&b, &a);
-	sb(&b);
-	pa(&a, &b);
-	sa(&a);
-	pa(&a, &b);
-	sa(&a);
-	print_stacks(a, b);
+	print_tab(av);
+	// stack_init(&a, av);
+	// print_stacks(a, b);
+	// sa(&a);
+	// rra(&a);
+	// print_stacks(a, b);
 	return (0);
 }

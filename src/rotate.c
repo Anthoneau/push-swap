@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/02 19:50:48 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/04 14:23:45 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:51:56 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,16 @@ static void    rotate(t_stack_node **stack)
 
 void	ra(t_stack_node **a)
 {
-	rotate(&a);
+	rotate(a);
 }
 
 void	rb(t_stack_node **b)
 {
-	rotate(&b);
+	rotate(b);
 }
 
 void	rr(t_stack_node **a, t_stack_node **b)
 {
-	ra(&a);
-	rb(&b);
+	ra(a);
+	rb(b);
 }

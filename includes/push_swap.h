@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:21:32 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/02 20:01:48 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:40:06 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,11 @@ void	sb(t_stack_node **b);
 void	ss(t_stack_node **a, t_stack_node **b);
 void	pa(t_stack_node **a, t_stack_node **b);
 void	pb(t_stack_node **b, t_stack_node **a);
+void	ra(t_stack_node **a);
+void	rb(t_stack_node **b);
+void	rr(t_stack_node **a, t_stack_node **b);
+void	rra(t_stack_node **a);
+void	rrb(t_stack_node **b);
+void	rrr(t_stack_node **a, t_stack_node **b);
 
 #endif

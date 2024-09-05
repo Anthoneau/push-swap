@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 22:25:45 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/31 01:08:47 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/04 16:25:12 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static void	new_lst(t_stack_node **a, int value)
 	if (!node)
 	{
 		ft_free_stack(&*a);
-		ft_exit("Error creating the node\n", -1);
+		ft_exit("Error\n", -1);
 	}
 	if (!value)
 	{
 		free(node);
 		ft_free_stack(&*a);
-		ft_exit("Error creating the node\n", -1);
+		ft_exit("Error\n", -1);
 	}
 	else
 		node->value = value;
@@ -63,6 +63,7 @@ void	stack_init(t_stack_node **a, char **av)
 	i = 0;
 	while (av[i])
 	{
+		printf("str stack init %s\n", av[i]);
 		nb = ft_atol(av[i]);
 		new_lst(&*a, (int)nb.value);
 		i++;
