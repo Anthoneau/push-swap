@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:25:12 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/04 16:42:43 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:53:14 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ static int	check_numbers(char **av)
 
 void	check_av(int ac, char **av)
 {
-	if (ac == 2)
-		av = ft_split(av[1], ' ');
-	else
+	//if (ac == 2)
+	//	av = ft_split(av[1], ' ');
+	//else
+	if (ac > 2)
 		del_prog_name(av);
 	if (!(check_numbers(av)))
 		ft_exit("Error\n", -1);

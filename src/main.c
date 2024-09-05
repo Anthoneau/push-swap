@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 15:54:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/04 16:43:24 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:51:59 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	main(int ac, char **av)
 	b = NULL;
 	if (ac == 1 || (ac == 2 && !av[1][0]))
 		ft_exit("", -1);
+	if (ac == 2)
+		av = ft_split(av[1], ' ');
 	check_av(ac, av);
 	print_tab(av);
-	// stack_init(&a, av);
-	// print_stacks(a, b);
+	stack_init(&a, av);
+	print_stacks(a, b);
 	// sa(&a);
 	// rra(&a);
 	// print_stacks(a, b);
