@@ -6,13 +6,13 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:46:45 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/26 17:11:59 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:29:39 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	find_median(int tot, int divisor, int *tab)
+static int	find_median(int tot, int divisor)
 {
 	int	median;
 	int	i;
@@ -22,7 +22,6 @@ static int	find_median(int tot, int divisor, int *tab)
 	if (divisor == 1)
 	{
 		median /= 2;
-		tab[0] = median;
 		return (median);
 	}
 	while (divisor)
@@ -31,75 +30,78 @@ static int	find_median(int tot, int divisor, int *tab)
 		divisor--;
 	}
 	median = tot - median;
-	tab[i - 1] = median;
 	return (median);
 }
 
-static int	push_lower(t_stack_node **a, t_stack_node **b, int pos, int tot)
+static int	verif_stack(t_stack_node **a, int pos)
 {
-	int	count;
+	t_stack_node	*current;
+
+	current = *a;
+	while (current->next)
+	{
+		if (current->pos < pos)
+			return (1);
+		if (current->next)
+			current = current->next;
+	}
+	return (0);
+}
+
+static void	push_lower(t_stack_node **a, t_stack_node **b, int pos, int tot)
+{
 	int	i;
 
-	count = 0;
 	i = 0;
 	while (i != tot - pos)
 	{
+		if (!verif_stack(a, pos))
+			break ;
 		if ((*a)->pos < pos)
 		{
-			count += pb(b, a);
+			pb(b, a);
 			i++;
 		}
 		else if (count_node(b) >= 2 && (*b)->pos < tot / 4)
-			count += rr(a, b);
+			rr(a, b);
 		else if (count_node(b) >= 4 && (*b)->next->pos < tot / 4)
 		{
-			count += sb(b);
-			count += rr(a, b);
+			sb(b);
+			rr(a, b);
 		}
 		else
-			count += ra(a);
+			ra(a);
 	}
-	return (count);
 }
 
-int	sort_med(t_stack_node **a, t_stack_node **b, int tot, int *tab)
+void	sort_med(t_stack_node **a, t_stack_node **b, int tot)
 {
-	int		count;
 	int		median;
 	int		i;
 
-	count = 0;
 	i = 1;
-	while (count_node(a) > 1)
+	while (count_node(a) > 2)
 	{
-		median = find_median(tot, i, tab);
+		median = find_median(tot, i);
 		if (count_node(a) >= tot / 20)
-			count += push_lower(a, b, median, tot);
+			push_lower(a, b, median, tot);
 		else
 			break ;
 		i++;
 	}
-	return (count);
 }
 
-int	sort(t_stack_node **a, t_stack_node **b, t_ind ind)
+void	sort(t_stack_node **a, t_stack_node **b, int tot_elem)
 {
-	int	count;
-	int	tab[20];
-
-	count = 0;
-	if (ind.tot_elem <= 5)
-		count += tiny_list(a, b, ind.tot_elem);
+	if (tot_elem <= 5)
+		tiny_list(a, b, tot_elem);
 	else
 	{
 		if (!real_sorted(a))
 		{
-			init_tab(tab);
-			count += sort_med(a, b, ind.tot_elem, tab);
-			complete_tab(tab, ind.tot_elem / 10);
-			count += sort_in_stack(a, b, ind.tot_elem);
-			count += rotate_sort(a, b, ind.tot_elem);
+			sort_med(a, b, tot_elem);
+			sort_in_stack(a, b, tot_elem);
+			rotate_sort(a, b, tot_elem);
 		}
 	}
-	return (count);
 }

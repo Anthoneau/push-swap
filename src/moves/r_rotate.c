@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 14:45:08 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/26 00:54:49 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:53:07 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,20 @@ static int	r_rotate(t_stack_node **stack)
 	return (1);
 }
 
-int	rra(t_stack_node **a)
+void	rra(t_stack_node **a)
 {
 	if (r_rotate(a))
-	{
 		ft_printf("rra\n");
-		return (1);
-	}
-	return (0);
 }
 
-int	rrb(t_stack_node **b)
+void	rrb(t_stack_node **b)
 {
 	if (r_rotate(b))
-	{
 		ft_printf("rrb\n");
-		return (1);
-	}
-	return (0);
 }
 
-int	rrr(t_stack_node **a, t_stack_node **b)
+void	rrr(t_stack_node **a, t_stack_node **b)
 {
 	if (r_rotate(a) && r_rotate(b))
-	{
 		ft_printf("rrr\n");
-		return (1);
-	}
-	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 19:23:27 by agoldber          #+#    #+#              #
-#    Updated: 2024/09/23 20:50:21 by agoldber         ###   ########.fr        #
+#    Updated: 2024/09/28 18:05:24 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,18 +76,13 @@ OBJSF			=	.cache_exists
 
 all: check
 
-check:
-	@if [ -f $(NAME) ] && [ $$(find $(SRCS) -newer $(OBJS_DIR) -type f | wc -l) -eq 0 ]; then \
-		echo "${BGREEN}Everything up to date${COLOR_END}"; \
-	else \
-		$(MAKE) display_logo; \
-		$(MAKE) ${NAME}; \
-	fi
+check: ${NAME}
+	@echo "${BGREEN}\nEverything up to date${COLOR_END}";
 
 display_logo:
-	$(gradient_logo)
+			$(gradient_logo)
 
-${NAME}:	${LIBFT} | ${OBJS}
+${NAME}:	display_logo ${LIBFT} | ${OBJS}
 			@${CC} -o ${NAME} ${OBJS} ${LIBFT}
 			@echo "\n${BGREEN}Push_swap compiled!${COLOR_END}"
 
@@ -120,4 +115,4 @@ fclean:	clean
 
 re:		fclean all
 
-.PHONY:	all clean fclean re
+.PHONY:	all clean fclean re check display_logo

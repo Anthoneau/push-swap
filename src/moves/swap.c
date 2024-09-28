@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:39:37 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/23 20:28:58 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:52:15 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,32 +57,20 @@ static int	swap(t_stack_node **stack)
 	return (0);
 }
 
-int	sa(t_stack_node **a)
+void	sa(t_stack_node **a)
 {
 	if (swap(a))
-	{
 		ft_printf("sa\n");
-		return (1);
-	}
-	return (0);
 }
 
-int	sb(t_stack_node **b)
+void	sb(t_stack_node **b)
 {
 	if (swap(b))
-	{
 		ft_printf("sb\n");
-		return (1);
-	}
-	return (0);
 }
 
-int	ss(t_stack_node **a, t_stack_node **b)
+void	ss(t_stack_node **a, t_stack_node **b)
 {
 	if (swap(a) && swap(b))
-	{
 		ft_printf("ss\n");
-		return (1);
-	}
-	return (0);
 }

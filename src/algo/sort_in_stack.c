@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 20:04:58 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/26 16:45:03 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/28 18:48:25 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,28 +56,29 @@ static int	change_median(t_stack_node **stack, int median)
 	return (1);
 }
 
-int	sort_in_stack(t_stack_node **a, t_stack_node **b, int tot_elem)
+void	sort_in_stack(t_stack_node **a, t_stack_node **b, int tot_elem)
 {
-	int	count;
 	int	median;
+	int	change;
 
-	count = 0;
-	median = tot_elem / 10;
-	while (*b)
+	change = tot_elem / 10;
+	if (change == 0)
+		change = 1;
+	median = change;
+	while (count_node(b) > 2)
 	{
 		if ((*b)->pos >= tot_elem - median)
-			count += pa(a, b);
+			pa(a, b);
 		else
 		{
 			if (do_rev_max(b, tot_elem - median, count_node(b)))
-				count += rb(b);
+				rb(b);
 			else
-				count += rrb(b);
+				rrb(b);
 		}
 		if (change_median(b, tot_elem - median))
-			median += tot_elem / 10;
+			median += change;
 		if (count_node(b) <= tot_elem / 20)
 			break ;
 	}
-	return (count);
 }

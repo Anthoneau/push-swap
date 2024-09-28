@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:56:47 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/26 13:58:19 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/28 19:01:23 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,44 +52,4 @@ int	count_node(t_stack_node **stack)
 			break ;
 	}
 	return (count + 1);
-}
-
-void	init_tab(int *tab)
-{
-	int	i;
-
-	i = 0;
-	while (i++ <= 20)
-		tab[i] = 0;
-}
-
-void	complete_tab(int tab[10], int elem)
-{
-	int	i;
-	int	multiplicator;
-
-	i = 0;
-	multiplicator = 1;
-	while (i <= 10)
-	{
-		tab[i] = elem * multiplicator;
-		i++;
-		multiplicator++;
-	}
-}
-
-int	in_tab(int elem, int tab[10])
-{
-	int	i;
-
-	i = 0;
-	if (elem < tab[0])
-		return (0);
-	while (i <= 10)
-	{
-		if (elem == tab[i])
-			return (1);
-		i++;
-	}
-	return (0);
 }
