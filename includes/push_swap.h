@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:21:32 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/28 19:12:08 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:11:12 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ typedef struct s_verif_num
 }	t_verif;
 
 void			ft_exit(char *str, int n);
-void			ft_freexit(void *pointer, char *str, int i);
 void			ft_free_stack(t_stack_node **stack);
+void			ft_free_double_arr(char **arr);
 t_verif			ft_atol(char *str);
 int				sorted(t_stack_node **a);
 int				real_sorted(t_stack_node **stack);
 int				count_node(t_stack_node **stack);
-t_stack_node	*check_av(int ac, char **av, int *tot_elem);
+t_stack_node	*check_av(int ac, char **av, int *tot_elem, char ***num);
 void			bubble_sort(t_stack_node *tab, int tot_elem);
-void			stack_init(t_stack_node **a, char **av, t_stack_node *tab);
+void			stack_init(t_stack_node **a, char ***num, t_stack_node *tab);
 void			sort(t_stack_node **a, t_stack_node **b, int tot_elem);
 void			tiny_list(t_stack_node **a, t_stack_node **b, int elem);
 void			sort_med(t_stack_node **a, t_stack_node **b, int tot);

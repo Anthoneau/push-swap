@@ -6,11 +6,30 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 19:56:47 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/28 19:01:23 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/10/06 18:43:48 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	sorted(t_stack_node **stack)
+{
+	t_stack_node	*current;
+
+	current = *stack;
+	while (current)
+	{
+		if (current->next)
+		{
+			if (current->value > current->next->value)
+				return (0);
+			current = current->next;
+		}
+		else
+			break ;
+	}
+	return (1);
+}
 
 int	real_sorted(t_stack_node **stack)
 {

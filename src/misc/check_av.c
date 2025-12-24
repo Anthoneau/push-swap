@@ -5,31 +5,60 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 17:25:12 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/28 19:12:34 by agoldber         ###   ########.fr       */
+/*   Created: 2024/10/06 19:15:04 by agoldber          #+#    #+#             */
+/*   Updated: 2024/10/10 17:31:25 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	del_prog_name(char **av)
+static int	not_void(char *av)
 {
-	int	i;
-	int	j;
+	int	num;
 
-	i = 0;
-	while (av[i])
+	num = 0;
+	while (*av)
 	{
-		j = i + 1;
-		if (av[j])
-			av[i] = av[j];
-		else
-			av[i] = NULL;
-		i++;
+		if (ft_isdigit(*av))
+			num++;
+		else if (ft_isalpha(*av))
+		{
+			num = 0;
+			break ;
+		}
+		av++;
 	}
+	return (num);
 }
 
-static int	check_double(t_stack_node *tab, int i)
+static char	**fill_num(int ac, char **av)
+{
+	char	**num;
+	int		i;
+	int		j;
+
+	if (ac == 2 && !not_void(av[1]))
+		return (NULL);
+	if (ac == 2)
+		return (ft_split(av[1], ' '));
+	num = malloc(ac * sizeof(char *));
+	if (!num)
+		return (NULL);
+	i = 1;
+	j = 0;
+	while (av[i])
+	{
+		num[j] = ft_strdup(av[i]);
+		if (!num[j])
+			return (ft_free_double_arr(num), NULL);
+		i++;
+		j++;
+	}
+	num[j] = NULL;
+	return (num);
+}
+
+static int	check_double(t_stack_node *arr, int i)
 {
 	int	j;
 
@@ -38,7 +67,7 @@ static int	check_double(t_stack_node *tab, int i)
 		j = i - 1;
 		while (j >= 0)
 		{
-			if (tab[i].value == tab[j].value)
+			if (arr[i].value == arr[j].value)
 				return (0);
 			j--;
 		}
@@ -46,39 +75,45 @@ static int	check_double(t_stack_node *tab, int i)
 	return (1);
 }
 
-static t_stack_node	*check_numbers(char **av, int *tot_elem)
+static t_stack_node	*check_numbers(char **num, int *tot_elem)
 {
 	int				i;
 	t_verif			nb;
-	t_stack_node	*tab;
+	t_stack_node	*arr;
 
 	i = 0;
-	while (av[i])
+	while (num[i])
 		i++;
-	tab = malloc(i * sizeof(t_stack_node));
-	if (!tab)
-		ft_exit("Error\n", 1);
+	arr = malloc(i * sizeof(t_stack_node));
+	if (!arr)
+		return (NULL);
 	i = 0;
-	while (av[i])
+	while (num[i])
 	{
-		nb = ft_atol(av[i]);
+		nb = ft_atol(num[i]);
 		if (nb.err == -1)
-			ft_freexit(tab, "Error\n", 1);
-		tab[i].value = nb.value;
-		if (!check_double(tab, i))
-			ft_freexit(tab, "Error\n", 1);
+			return (free(arr), NULL);
+		arr[i].value = nb.value;
+		if (!check_double(arr, i))
+			return (free(arr), NULL);
 		i++;
 	}
 	*tot_elem = i;
-	return (tab);
+	return (arr);
 }
 
-t_stack_node	*check_av(int ac, char **av, int *tot_elem)
+t_stack_node	*check_av(int ac, char **av, int *tot_elem, char ***num)
 {
-	t_stack_node	*tab;
+	t_stack_node	*arr;
 
-	if (ac > 2)
-		del_prog_name(av);
-	tab = check_numbers(av, tot_elem);
-	return (tab);
+	*num = fill_num(ac, av);
+	if (!*num)
+		ft_exit("Error\n", 1);
+	arr = check_numbers(*num, tot_elem);
+	if (!arr)
+	{
+		ft_free_double_arr(*num);
+		ft_exit("Error\n", 1);
+	}
+	return (arr);
 }

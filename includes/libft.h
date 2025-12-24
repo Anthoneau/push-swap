@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 14:24:10 by agoldber          #+#    #+#             */
-/*   Updated: 2024/08/21 16:32:04 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/10/10 18:34:18 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 80
+#  define BUFFER_SIZE 2147483647
 # endif
 # ifdef BUFFER_SIZE
 #  if BUFFER_SIZE > MAX_INT
@@ -40,6 +40,7 @@ int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		ft_isascii(int c);
 int		ft_isprint(int c);
+int		ft_isspace(char *str);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -92,9 +93,9 @@ char	*hexa_transfo(unsigned long ptr_val);
 int		display_address(unsigned long ptr_val);
 int		display_hexa(int n, char c);
 //GNL
-char	*get_next_line(int fd);
 char	*ft_strjoin_mod(char *s1, char *s2);
 int		ft_findchar(char c, char *str);
+char	*get_next_line(int fd);
 //ADDITIONAL FUNCTIONS
 void	ft_swap(int *i, int *j);
 #endif

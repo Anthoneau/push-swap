@@ -6,7 +6,7 @@
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 19:23:27 by agoldber          #+#    #+#              #
-#    Updated: 2024/09/28 18:05:24 by agoldber         ###   ########.fr        #
+#    Updated: 2024/10/14 14:36:27 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MISC_DIR 		=	misc/
 MOVES_DIR 		=	moves/
 SRCS_DIR 		=	src/
 OBJS_DIR		=	obj/
-CC				=	gcc
+CC				=	cc
 C_FLAGS			=	-Wall -Werror -Wextra -I${INCLUDES}
 LIBFT			=	libft.a
 RM				=	rm -rf
@@ -38,9 +38,7 @@ PASTEL_PURPLE	=	\033[38;5;183m
 PASTEL_BLUE		=	\033[38;5;111m
 COLOR_END		=	\033[0m
 
-#GRADIENT LOGO FUNCTION
-
-
+#LOGO
 
 define gradient_logo
 		@echo "${PASTEL_PINK} ______   __  __     ______     __  __     ______     __     __     ______     ______  "
@@ -50,7 +48,6 @@ define gradient_logo
 		@echo "${PASTEL_PINK}  \/_/     \/_____/   \/_____/   \/_/\/_/   \/_____/   \/_/   \/_/   \/_/\/_/   \/_/   ${COLOR_END}"
 		@echo ""
 endef
-                                                                                       
 
 #SOURCES
 
@@ -68,6 +65,7 @@ SRCS			=	${addprefix ${SRCS_DIR}, ${addsuffix .c, ${FILES}}}
 OBJS			=	${addprefix ${OBJS_DIR}, ${addsuffix .o, ${FILES}}}
 
 #PROGRESS BAR
+
 TOTAL_FILES		=	$(words $(FILES))
 
 # ---------------------------------------------------------------------------- #
@@ -76,13 +74,13 @@ OBJSF			=	.cache_exists
 
 all: check
 
-check: ${NAME}
+check: display_logo ${NAME}
 	@echo "${BGREEN}\nEverything up to date${COLOR_END}";
 
 display_logo:
 			$(gradient_logo)
 
-${NAME}:	display_logo ${LIBFT} | ${OBJS}
+${NAME}:	${LIBFT} ${OBJS}
 			@${CC} -o ${NAME} ${OBJS} ${LIBFT}
 			@echo "\n${BGREEN}Push_swap compiled!${COLOR_END}"
 

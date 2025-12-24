@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/05 18:33:01 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/28 18:46:53 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/30 10:40:35 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 
 static void	sort_two(t_stack_node **stack)
 {
-	if (!sorted(stack))
-	{
-		if ((*stack)->pos > (*stack)->next->pos)
-			sa(stack);
-	}
+	if ((*stack)->pos > (*stack)->next->pos)
+		sa(stack);
 	return ;
 }
 

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/16 09:39:13 by agoldber          #+#    #+#              #
-#    Updated: 2024/09/18 19:23:49 by agoldber         ###   ########.fr        #
+#    Created: 2021/07/27 09:39:13 by agoldber          #+#    #+#              #
+#    Updated: 2024/10/10 18:34:49 by agoldber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	libft.a
 INCLUDES	=	include
 SRCS_DIR 	=	src/
 OBJS_DIR	=	obj/
-CC			=	gcc
+CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra -I
 RM			=	rm -rf
 AR			=	ar -rcs
@@ -33,7 +33,7 @@ COLOR_END	=	\033[0m
 #SOURCES
 
 FTIS_DIR	=	ft_is/
-FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
+FTIS		=	ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint ft_isspace
 
 FTMEM_DIR	=	ft_mem/
 FTMEM		=	ft_bzero ft_calloc ft_memchr ft_memcmp ft_memmove ft_memset
@@ -57,7 +57,7 @@ FTPRINTF_DIR=	ft_printf/
 FTPRINTF	=	display ft_printf hexa_transfo print_string
 
 GNL_DIR		=	gnl/
-GNL			=	get_next_line2 get_next_line2_utils
+GNL			=	get_next_line get_next_line_utils
 
 FTADD_DIR	=	ft_add/
 FTADD		=	ft_swap
@@ -80,7 +80,6 @@ OBJS 		= 	${addprefix ${OBJS_DIR}, ${addsuffix .o, ${SRC_FILES}}}
 OBJSF		=	.cache_exists
 TOTAL_FILES = $(words $(SRCS))
 
-# Fonction pour afficher une barre de progression
 define progress_bar
 	@COMPILED=$$(( $(COMPILED_FILES) + 1 )); \
 	PROGRESS=$$(($$COMPILED*50/$(TOTAL_FILES))); \

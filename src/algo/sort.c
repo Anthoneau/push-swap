@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/21 17:46:45 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/28 19:29:39 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/09/30 09:49:45 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 static int	find_median(int tot, int divisor)
 {
 	int	median;
-	int	i;
 
 	median = tot;
-	i = divisor;
 	if (divisor == 1)
 	{
 		median /= 2;
@@ -83,6 +81,8 @@ void	sort_med(t_stack_node **a, t_stack_node **b, int tot)
 	while (count_node(a) > 2)
 	{
 		median = find_median(tot, i);
+		if (median == tot)
+			break ;
 		if (count_node(a) >= tot / 20)
 			push_lower(a, b, median, tot);
 		else

@@ -6,7 +6,7 @@
 /*   By: agoldber <agoldber@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 19:19:12 by agoldber          #+#    #+#             */
-/*   Updated: 2024/09/23 20:29:14 by agoldber         ###   ########.fr       */
+/*   Updated: 2024/10/06 19:24:46 by agoldber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	ft_exit(char *str, int i)
 {
-	ft_putstr_fd(str, 1);
+	ft_putstr_fd(str, 2);
 	exit(i);
-}
-
-void	ft_freexit(void *pointer, char *str, int i)
-{
-	free(pointer);
-	ft_exit(str, i);
 }
 
 void	ft_free_stack(t_stack_node **stack)
@@ -33,9 +27,27 @@ void	ft_free_stack(t_stack_node **stack)
 	while (current)
 	{
 		to_free = current;
-		current = current->next;
+		if (current->next)
+			current = current->next;
+		else
+			break ;
 		free(to_free);
 	}
+	if (to_free)
+		free(to_free);
+}
+
+void	ft_free_double_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }
 
 t_verif	ft_atol(char *str)
@@ -64,23 +76,4 @@ t_verif	ft_atol(char *str)
 	if (res.value > INT_MAX || res.value < INT_MIN)
 		res.err = -1;
 	return (res);
-}
-
-int	sorted(t_stack_node **stack)
-{
-	t_stack_node	*current;
-
-	current = *stack;
-	while (current)
-	{
-		if (current->next)
-		{
-			if (current->value > current->next->value)
-				return (0);
-			current = current->next;
-		}
-		else
-			break ;
-	}
-	return (1);
 }
